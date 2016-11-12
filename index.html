@@ -6,6 +6,32 @@
 <body style=
 "background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div class="login-page">
+
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
+</script>
+
+
+<script>
+  // Initialize Firebase
+
+  var config = {
+    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+    databaseURL: "https://travelmatch-b0fd7/users/.firebaseio.com/",
+    storageBucket: "travelmatch-b0fd7.appspot.com",
+    messagingSenderId: "152032242547"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+
+
+
+<h1 id="fireHeading"></h1>
         <div class="form">
             <form>
                 <img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style=
@@ -21,11 +47,60 @@
             <div id="notice">
                 Don't have an account, sign up here
             </div><button id="signupbutton" name="sign up" onclick=
-            "location.href='signup.html'" style="float: left;" type=
+            "location.href='SignUp.html'" style="float: left;" type=
             "submit">Sign Up</button>
         </div>
     </div>
     
+
+<script>
+    // Send message
+    var contactFrom = document.getElementById('signup-form');
+    var contactSuccess = document.getElementById('signup-success');
+    var contactError = document.getElementById('signup-error');
+    var sendBtn = document.getElementById('send-button');
+    var fireHeading = document.getEementById('fireHeading');
+
+
+	var firebaseHeadingRef = firebase.database().ref().child("KVbIOB2XX-8n_JNC6LV");
+
+firebaseHeading.on('value', function(datasnapshot)
+{
+	fireHeading.innerText = datasnapshot;
+});
+
+
+
+    var onMessageComplete = function(error) {
+      sendBtn.disabled = false;
+      if (error) {
+        
+      } else {
+       
+        // hide the form
+        contactFrom.style.display = 'none';
+      }
+    };
+    function sendMessage(formObj) {
+        // Store emails to firebase
+        var myFirebaseRef = new Firebase("https://travelmatch-b0fd7/users/.firebaseio.com");
+        myFirebaseRef.push({
+          name: formObj.name.value,
+          email: formObj.email.value,
+	  confirmemail: formObj.email.value,
+          password: formObj.password.value,
+	  confirmpassword: formObj.password.value
+        }, onMessageComplete);
+        sendBtn.disabled = true;
+        return false;
+    }
+</script>
+</body>
+</html>
+
+
+
+
     </body>
     </html> 
     
