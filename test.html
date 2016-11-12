@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<!--Body-->
+<body style="background-color: #e6e6e6;" >
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
+</script>
+
+
+<script>
+  // Initialize Firebase
+
+  var config = {
+    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+    databaseURL: "https://travelmatch-b0fd7.firebaseio.com/",
+    storageBucket: "travelmatch-b0fd7.appspot.com",
+    messagingSenderId: "152032242547"
+  };
+  firebase.initializeApp(config);
+	var database=firebase.database();
+
+function generate(){
+	console.log(database);
+	database.ref("/").once("value").then(
+
+
+	function (snapshot){
+		console.log(snapshot.val())
+
+		}
+
+
+
+
+
+	)
+}
+	/*function generate() {
+        // Retrieves data from database
+	Firebase ref = new Firebase("https://travelmatch-b0fd7.firebaseio.com/");
+	ref.addListenerForSingleValueEvent(new ValueEventListener() {
+	   @Override
+		var dbRef = firebase.database().ref().child('travelmatch-b0fd7'+ref).child('Bruxelles');
+		   dbRef.on('value', snap => h1.innerText =snap.val()+);
+   }*/
+
+</script>
+
+<button id="generatedata" name="generate" onclick="generate();" style="float: left;" type="submit">Generate Data</button>
+</body>
+</html>
+
+
+
+
+
