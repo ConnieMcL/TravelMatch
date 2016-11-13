@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Travel Match</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <title>Travel Match</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
 </head>
-<body>
+<body style="background-color: lightgray;">
+    
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">    <img style="margin-right: 10px; margin-bottom: 20px;" src="https://i.imgsafe.org/8754a48d77.png"; width=220px height=31px> </img>
+</a>
+    </div>
+    <ul class="nav navbar-nav">
+    
+        <li><a href="#"><span class="glyphicon glyphicon-chevron-left"></span>Back</a></li>
+      <li class="active"><a href="#">Analytics</a></li>
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Change my password</a></li>
+          <li><a href="#">Update my email address</a></li>
+          <li><a href="#">Change my other info</a></li>
+        </ul>
+      </li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+    </ul>
+  </div>
+</nav>
+  
+      
 <div class="main">
 <div id="category-stats">
-<p>Your top categories</p>
+<p style="font-weight: bold;">YOUR TOP CATEGORIES</p>
 <div id="cat1"> <p id="name">Arts and Culture</p> <p id="percent">45%</p> </div>
 <div id="cat2"> <p id="name">History</p> <p id="percent">25%</p></div>
 <div id="cat3"> <p id="name">Outdoors</p> <p id="percent">20%</p></div>
 <div id="cat4"> <p id="name">Food and Drink</p> <p id="percent">10%</p></div>
 
 </div>
-<div id="prev-matches">
-<p>Your previous matches</p>
-<div id="prevmatch1"> <p id="image1" class="image"> <img src="https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14063700_614098095437653_495980956_n.jpg?ig_cache_key=MTMxOTA1Njk5MzExMzMyODEwOA%3D%3D.2"/></p> <p id="title1">Bruxelles</p> </div>
-<div id="prevmatch2"> <p id="image2" class="image"> <img src="https://scontent-frt3-1.cdninstagram.com/t51.2885-15/e35/13108649_948534531931830_1365530701_n.jpg?ig_cache_key=MTIzODYxMDI2MTAyNzI1NTIxMg%3D%3D.2" /></p> <p id="title2">Christchurch Cathedral</p> </div>
-<div id="prevmatch3"> <p id="image3" class="image"> <img src="https://scontent-frt3-1.cdninstagram.com/t51.2885-15/e35/13694814_1650840158564906_1203124524_n.jpg?ig_cache_key=MTMxNzU3MTA4OTgyMDEzNzg2NA%3D%3D.2" /></p> <p id="title3">Dubhlinn Gardens</p> </div>
-<div id="prevmatch4"> <p id="image4" class="image"
-
-> <img src="https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14279088_1173179092755983_1639895086_n.jpg?ig_cache_key=MTMzNzE4ODIxMjA1NzkxNjY2OA%3D%3D.2" /></p> <p id="title4">Grafton Street</p> </div>
+<br>
+<div class="prev-matches" >
+<p style="font-weight: bold;">YOUR PREVIOUS MATCHES</p>
+<div id="prevmatch1"> <p id="image1" class="image"> <img src="https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14063700_614098095437653_495980956_n.jpg?ig_cache_key=MTMxOTA1Njk5MzExMzMyODEwOA%3D%3D.2"/></p> <p class="title" id="title1" >Bruxelles</p> </div>
+<div id="prevmatch2"> <p id="image2" class="image"> <img src="https://scontent-frt3-1.cdninstagram.com/t51.2885-15/e35/13108649_948534531931830_1365530701_n.jpg?ig_cache_key=MTIzODYxMDI2MTAyNzI1NTIxMg%3D%3D.2" /></p> <p class="title" id="title2">Christchurch Cathedral</p> </div>
+<div id="prevmatch3"> <p id="image3" class="image"> <img src="https://scontent-frt3-1.cdninstagram.com/t51.2885-15/e35/13694814_1650840158564906_1203124524_n.jpg?ig_cache_key=MTMxNzU3MTA4OTgyMDEzNzg2NA%3D%3D.2" /></p> <p class="title" id="title3">Dubhlinn Gardens</p> </div>
+<div id="prevmatch4"> <p id="image4" class="image"> <img src="https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14279088_1173179092755983_1639895086_n.jpg?ig_cache_key=MTMzNzE4ODIxMjA1NzkxNjY2OA%3D%3D.2" /></p> <p class="title" id="title4">Grafton Street</p> </div>
 
 </div>
 </div>
@@ -34,38 +64,66 @@
 <style>
 .main{
   
-    z-index: 1000;
-    background: #ffffff;
-    max-width: 360px;
-    height: 320px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-    opacity: 1;
+    
+    margin: auto;
+    width: 50%;
 	font-size: 20px;
-	font-family: Helvetica;
-
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 #category-stats{
-
    text-align: left;
-
 }
 #name,#percent{
-
    display: inline;
-
+}
+.image, .title{
+        display: inline;
 }
 #prev-matches{
-
    text-align: left;
-
 }
-img{
-
+div.prev-matches img{
   width: 100px;
   height: 120px;
-
+  vertical-align: middle;
+  margin: 5px;
 }
+.prev-matches{
+    
+ margin: auto;
+ background-color: white;
+ padding: 10px;
+ max-width: 400px;
+ max-height: 600px;
+}
+#category-stats{
+    
+    margin: auto;
+    font-weight: bold;
+    background-color: white;
+    padding: 10px;
+    max-width: 400px;
+    max-height: 500px;
+    text-transform: uppercase;
 
+        
+    }
+    #cat1{
+        color: mediumpurple;
+    }
+    #cat2{
+        color: mediumturquoise;
+    }
+    #cat3{
+        color: lightgreen;
+    }
+    #cat4{
+        color: lightcoral;
+    }
+ .navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  margin-bottom: 10px;
+     position: absolute;
+}
 </style>
