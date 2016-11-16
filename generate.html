@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<!--Body-->
+<body onload="generate()" style="background-color: #e6e6e6;" >
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
+</script>
+
+
+<script>
+  // Initialize Firebase
+
+  var config = {
+    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+    databaseURL: "https://travelmatch-b0fd7.firebaseio.com/",
+    storageBucket: "travelmatch-b0fd7.appspot.com",
+    messagingSenderId: "152032242547"
+  };
+  firebase.initializeApp(config);
+	var database=firebase.database();
+
+
+var num=Math.floor(Math.random() * 95) + 1;
+var string=num.toString();//changes random number to string so it can be refrenced from the db
+var slash="/";
+//var IM="/Image";
+var GI="/General Info";
+var AD="/Address";
+var CA="/Category";
+var res=slash.concat(string);//adding the slash prefix to the attributes 
+var resGI=res.concat(GI);//the general info attributes token
+var resAD=res.concat(AD);//the Address attributes token
+var resCA=res.concat(CA);//the Address attributes token
+
+//function rannum(){var bloop = Math.floor(Math.random() * 95) + 1;
+
+
+
+
+
+<script>
+function generate(){
+
+	console.log(database);
+	database.ref(resGI).once("value").then( //extracting the gi text
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var ginfo = snapshot.val();
+
+		//document.write(ginfo);//printing the generalinfo
+		return document.body.appendChild(document.createTextNode(ginfo));
+		})
+
+}
+
+
+
+
+
+/*function generate2(){
+
+	console.log(database);
+	database.ref(resAD).once("value").then( //extracting the gi text
+
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var ainfo = snapshot.val();
+
+		//document.write(ainfo);//printing the generalinfo
+		return document.body.appendChild(document.createTextNode(ainfo));
+		})
+
+}
+
+
+function generate3(){
+	console.log(database);
+	database.ref(resCA).once("value").then( //extracting the gi text
+
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var cinfo = snapshot.val();
+
+		//document.write(ainfo);//printing the generalinfo
+		return document.body.appendChild(document.createTextNode(cinfo));
+		})
+
+}
+
+
+
+
+function reset(){
+
+	document.getElementById("cinfo").reset();
+}
+
+
+
+
+	/*function generate() {
+        // Retrieves data from database
+	Firebase ref = new Firebase("https://travelmatch-b0fd7.firebaseio.com/");
+	ref.addListenerForSingleValueEvent(new ValueEventListener() {
+	   @Override
+		var dbRef = firebase.database().ref().child('travelmatch-b0fd7'+ref).child('Bruxelles');
+		   dbRef.on('value', snap => h1.innerText =snap.val()+);
+   }*/
+
+</script>
+
+<button id="generatedata" name="generate" onclick="generate();" style="float: left;" type="submit">Generate Data</button>
+<p id="general">   </p>
+
+</body>
+</html>
+
+
+
+
+
