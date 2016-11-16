@@ -24,31 +24,41 @@
 	var database=firebase.database();
 
 
-var num=Math.floor(Math.random() * 95) + 1;
+var num=Math.floor(Math.random() * 92) + 1;
 var string=num.toString();//changes random number to string so it can be refrenced from the db
 var slash="/";
-//var IM="/Image";
+var NA="/Name";
+var IM="/Image";
 var GI="/General Info";
 var AD="/Address";
 var CA="/Category";
+var GP="/GPS";
+var PH="/Telephone";
+var WB="/Website";
 var res=slash.concat(string);//adding the slash prefix to the attributes 
+var resIM=res.concat(IM);
 var resGI=res.concat(GI);//the general info attributes token
 var resAD=res.concat(AD);//the Address attributes token
-var resCA=res.concat(CA);//the Address attributes token
+var resCA=res.concat(CA);//the Category attributes token
+var resNA=res.concat(NA);
+var resGP=res.concat(GP);
+var resPH=res.concat(PH);
+var resWB=res.concat(WB);
 
-function yourfunction(){
-	generate();
-	generate2();
-	generate3();
+//function rannum(){var bloop = Math.floor(Math.random() * 95) + 1;
+
+var num=Math.floor(Math.random() * 95) + 1;
+
+
+function yourfunction() { generate();generate2();generate3();generate4();generate5();generate6();generate7();generate8(); }
+
+window.onload = yourfunction;
+
+
+
+function reload() {
+    location.reload();
 }
-
-window.onload=yourfunction;
-
-function reload(){
-	location.reload();
-}
-
-
 
 function generate(){
 
@@ -61,10 +71,11 @@ function generate(){
 		var ginfo = snapshot.val();
 
 		//document.write(ginfo);//printing the generalinfo
-		return document.body.appendChild(document.createTextNode(ginfo));
+		return general.appendChild(document.createTextNode(ginfo));
 		})
 
 }
+
 
 
 
@@ -82,7 +93,7 @@ function generate2(){
 		var ainfo = snapshot.val();
 
 		//document.write(ainfo);//printing the generalinfo
-		return document.body.appendChild(document.createTextNode(ainfo));
+		return addr.appendChild(document.createTextNode(ainfo));
 		})
 
 }
@@ -99,7 +110,23 @@ function generate3(){
 		var cinfo = snapshot.val();
 
 		//document.write(ainfo);//printing the generalinfo
-		return document.body.appendChild(document.createTextNode(cinfo));
+		return cat.appendChild(document.createTextNode(cinfo));
+		})
+
+}
+
+function generate4(){
+	console.log(database);
+	database.ref(resIM).once("value").then( //extracting the gi text
+
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var iminfo = snapshot.val();
+
+		//document.write(ainfo);//printing the generalinfo
+		return image.appendChild(document.createTextNode(iminfo));
 		})
 
 }
@@ -107,11 +134,8 @@ function generate3(){
 
 
 
-/*function reset(){
 
-	document.getElementById("cinfo").reset();
-}
-*/
+
 
 
 
@@ -124,11 +148,78 @@ function generate3(){
 		   dbRef.on('value', snap => h1.innerText =snap.val()+);
    }*/
 
+function generate5(){
+	console.log(database);
+	database.ref(resNA).once("value").then( //extracting the gi text
+
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var nainfo = snapshot.val();
+
+		//document.write(ainfo);//printing the generalinfo
+		return title.appendChild(document.createTextNode(nainfo));
+		})
+
+}
+function generate6(){
+
+	console.log(database);
+	database.ref(resGP).once("value").then( //extracting the gi text
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var gpinfo = snapshot.val();
+
+		//document.write(ginfo);//printing the generalinfo
+		return gps.appendChild(document.createTextNode(gpinfo));
+		})
+
+}
+function generate7(){
+
+	console.log(database);
+	database.ref(resPH).once("value").then( //extracting the gi text
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var phinfo = snapshot.val();
+
+		//document.write(ginfo);//printing the generalinfo
+		return phone.appendChild(document.createTextNode(phinfo));
+		})
+
+}
+function generate8(){
+
+	console.log(database);
+	database.ref(resWB).once("value").then( //extracting the gi text
+
+	function (snapshot){
+
+		console.log(snapshot.val()); 
+		var wbinfo = snapshot.val();
+
+		//document.write(ginfo);//printing the generalinfo
+		return web.appendChild(document.createTextNode(wbinfo));
+		})
+
+}
+
 </script>
 
 <button id="generatedata" name="generate" onclick="reload()" style="float: left;" type="submit">Generate Data</button>
+<h1 id="title"></h1>
+<h2 id="addr"></h2>
+<img src="smiley.gif" alt="Smiley face" width="100" height="100">
 <p id="general">   </p>
-
+<p id="gps"></p>
+<p id="phone"></p>
+<p id="web"></p>
+<p id="cat"></p>
 </body>
 </html>
 
