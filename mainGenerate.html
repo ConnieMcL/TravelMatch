@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<!--Body-->
+<body style="background-color: #e6e6e6;" >
+<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
+</script>
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+    databaseURL: "https://travelmatch-b0fd7.firebaseio.com/",
+    storageBucket: "travelmatch-b0fd7.appspot.com",
+    messagingSenderId: "152032242547"
+  };
+  firebase.initializeApp(config);
+	var database=firebase.database();
+
+var num=Math.floor(Math.random() * 92) + 1;
+var string=num.toString();//changes random number to string so it can be refrenced from the db
+var slash="/";
+var NA="/Name";
+var IM="/Image";
+var GI="/General Info";
+var AD="/Address";
+var CA="/Category";
+var GP="/GPS";
+var PH="/Telephone";
+var WB="/Website";
+var res=slash.concat(string);//adding the slash prefix to the attributes 
+var resIM=res.concat(IM);
+var resGI=res.concat(GI);//the general info attributes token
+var resAD=res.concat(AD);//the Address attributes token
+var resCA=res.concat(CA);//the Category attributes token
+var resNA=res.concat(NA);
+var resGP=res.concat(GP);
+var resPH=res.concat(PH);
+var resWB=res.concat(WB);
+
+var num=Math.floor(Math.random() * 92) + 1;
+function yourfunction() { generate();generate2();generate3();generate4();generate5();generate6();generate7();generate8(); }
+window.onload = yourfunction;
+function reload() {
+    location.reload();
+}
+function generate(){
+	console.log(database);
+	database.ref(resGI).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var ginfo = snapshot.val();
+		
+		return general.appendChild(document.createTextNode(ginfo));
+		})
+}
+function generate2(){
+	console.log(database);
+	database.ref(resAD).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var ainfo = snapshot.val();
+		
+		return addr.appendChild(document.createTextNode(ainfo));
+		})
+}
+function generate3(){
+	console.log(database);
+	database.ref(resCA).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var cinfo = snapshot.val();
+	
+		return cat.appendChild(document.createTextNode(cinfo));
+		})
+}
+function generate4(){
+	console.log(database);
+	database.ref(resIM).once("value").then(
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var iminfo = snapshot.val();
+		
+	
+		document.querySelector('img').src=iminfo;
+		
+		})
+}
+function generate5(){
+	console.log(database);
+	database.ref(resNA).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var nainfo = snapshot.val();
+		
+		return title.appendChild(document.createTextNode(nainfo));
+		})
+}
+function generate6(){
+	console.log(database);
+	database.ref(resGP).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var gpinfo = snapshot.val();
+		document.querySelector(".gpsinfo").href=gpinfo;
+		//return gps.appendChild(document.createTextNode(gpinfo));
+		})
+}
+function generate7(){
+	console.log(database);
+	database.ref(resPH).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var phinfo = snapshot.val();
+		//document.write(ginfo);//printing the generalinfo
+		return phone.appendChild(document.createTextNode(phinfo));
+		})
+}
+function generate8(){
+	console.log(database);
+	database.ref(resWB).once("value").then( //extracting the gi text
+	function (snapshot){
+		console.log(snapshot.val()); 
+		var wbinfo = snapshot.val();
+		document.querySelector(".web").href=wbinfo;
+		//return web.appendChild(document.createTextNode(wbinfo));
+		})
+}
+</script>
+
+<button id="generatedata" name="generate" onclick="reload()" style="float: left;" type="submit">Generate Data</button>
+<h1 id="title"></h1>
+<h2 id="addr"></h2>
+
+<img width="500" height="500" />
+<p><a class="gpsinfo">gps<a/></p>
+<p id="general">   </p>
+<p id="gps"></p>
+<p id="phone"></p>
+<p><a class="web">website<a/></p>
+<p id="cat"></p>
+</body>
+</html>
