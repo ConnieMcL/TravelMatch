@@ -117,7 +117,7 @@ function generate3(){
 
 function generate4(){
 	console.log(database);
-	database.ref(resIM).once("value").then( //extracting the gi text
+	database.ref(resIM).once("value").then(
 
 
 	function (snapshot){
@@ -125,8 +125,11 @@ function generate4(){
 		console.log(snapshot.val()); 
 		var iminfo = snapshot.val();
 
-		//document.write(ainfo);//printing the generalinfo
-		return image.appendChild(document.createTextNode(iminfo));
+		
+	
+		document.querySelector('img').src=iminfo;
+
+		
 		})
 
 }
@@ -214,7 +217,8 @@ function generate8(){
 <button id="generatedata" name="generate" onclick="reload()" style="float: left;" type="submit">Generate Data</button>
 <h1 id="title"></h1>
 <h2 id="addr"></h2>
-<img src="smiley.gif" alt="Smiley face" width="100" height="100">
+
+<img width="500" height="500" />
 <p id="general">   </p>
 <p id="gps"></p>
 <p id="phone"></p>
