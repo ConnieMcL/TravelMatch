@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Travel Match</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="signout.js"></script>
+</head>
 
-</head>
-</head>
-<body style=
-"background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
+<body>
+
 <div class="login-page">
 
-<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
-</script>
-
-<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
-</script>
+	
+<form style=
+"background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
 
 
-<script>
+<img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style="margin-right: 10px; margin-bottom: 20px;" width="220px">
+                
+				<head>
+					
+				    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+
+
+					<script>
   // Initialize Firebase
-
   var config = {
     apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
     authDomain: "travelmatch-b0fd7.firebaseapp.com",
@@ -32,92 +35,42 @@
   };
   firebase.initializeApp(config);
 </script>
+					<script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+					<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
+					<script type="text/javascript">
+						// FirebaseUI config.
+						var uiConfig = {
+							'signInSuccessUrl': 'mainGenerate.html',
+							'signInOptions': [
+							// Leave the lines as is for the providers you want to offer your users.
+							firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+							
+						
+						firebase.auth.EmailAuthProvider.PROVIDER_ID
+							],
+							// Terms of service url.
+							'tosUrl': '<your-tos-url>',
+						};
 
-
-
-
-
-<h1 id="fireHeading"></h1>
-        <div class="form">
-            <form>
-                <img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style=
-                "margin-right: 10px; margin-bottom: 20px;" width="220px">
-                
-                <input placeholder="email address" type="email"><br>
-                <input placeholder="password" type="password"><br>
-                <br>
-                <button name="Log in" style="float: left;" type="submit">Log in
-                </button>
-            </form><br>
-            
-            <div id="notice">
-                Don't have an account, sign up here
-            </div><button id="signupbutton" name="sign up" onclick=
-            "location.href='SignUp.html'" style="float: left;" type=
-            "submit">Sign Up</button>
-        </div>
-    </div>
-    
-
-<script>
-    // Send message
-    var contactFrom = document.getElementById('signup-form');
-    var contactSuccess = document.getElementById('signup-success');
-    var contactError = document.getElementById('signup-error');
-    var sendBtn = document.getElementById('send-button');
-    var fireHeading = document.getEementById('fireHeading');
-
-
-	var firebaseHeadingRef = firebase.database().ref().child("KVbIOB2XX-8n_JNC6LV");
-
-firebaseHeading.on('value', function(datasnapshot)
-{
-	fireHeading.innerText = datasnapshot;
-});
-
-
-
-    var onMessageComplete = function(error) {
-      sendBtn.disabled = false;
-      if (error) {
-        
-      } else {
-       
-        // hide the form
-        contactFrom.style.display = 'none';
-      }
-    };
-    function sendMessage(formObj) {
-        // Store emails to firebase
-        var myFirebaseRef = new Firebase("https://travelmatch-b0fd7/users/.firebaseio.com");
-        myFirebaseRef.push({
-          name: formObj.name.value,
-          email: formObj.email.value,
-	  confirmemail: formObj.email.value,
-          password: formObj.password.value,
-	  confirmpassword: formObj.password.value
-        }, onMessageComplete);
-        sendBtn.disabled = true;
-        return false;
-    }
-</script>
+						// Initialize the FirebaseUI Widget using Firebase.
+						var ui = new firebaseui.auth.AuthUI(firebase.auth());
+						// The start method will wait until the DOM is loaded.
+						ui.start('#firebaseui-auth-container', uiConfig);
+					</script>
+					<!-- The surrounding HTML is left untouched by FirebaseUI.
+						 Your app may use that space for branding, controls and other customizations.-->
+					<div id="firebaseui-auth-container"></div>
+				</head>
+				
+</form> 
+		
+</div>
 </body>
-</html>
-
-
-
-
-    </body>
-    </html> 
+</html> 
     
-    
-    
-    
-    <style>
 
-
+     <style>
     .form {
-
     z-index: 1000;
     background: #ffffff;
     max-width: 360px;
@@ -126,7 +79,6 @@ firebaseHeading.on('value', function(datasnapshot)
     padding: 45px;
     text-align: center;
     opacity: 1;
-
     }
     .form input {
     font-family: "Helvetica", sans-serif;
@@ -154,7 +106,6 @@ firebaseHeading.on('value', function(datasnapshot)
     opacity: 1;
     }
     #signupbutton{
-
     font-family: "Helvetica", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -175,7 +126,6 @@ firebaseHeading.on('value', function(datasnapshot)
     margin-top: 50px;
     font-family: "Helvetica", sans-serif;
     font-size: 15px;
-
         
         
     }
@@ -186,6 +136,6 @@ firebaseHeading.on('value', function(datasnapshot)
     z-index: -1;
     height: 100px;
     opacity: 0.9555;
-
     }
     </style>
+
