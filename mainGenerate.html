@@ -194,15 +194,11 @@
               //return web.appendChild(document.createTextNode(wbinfo));
           }
           )
-
 	btnLogout.addEventListener('click',e => {;
 		alert("Signing Out");
 		firebase.auth().signout();
 		window.location.href="index.html";
-
 }
-
-
 )
         }
     </script>
@@ -234,11 +230,11 @@
         <p class="card-text" id="phone">Tel:</p>
 
 
-        <p class="card-text"><a class="card-link gpsinfo">Location</a>
+        <p class="card-text"><a class="card-link gpsinfo" target="_blank">Location</a>
         </p>
 
 
-        <p class="card-text"><a class="card-link web">Website</a>
+        <p class="card-text"><a class="card-link web" target="_blank">Website</a>
         </p>
         <br>
 
@@ -278,30 +274,21 @@
         .glyphicon.glyphicon-heart {
           font-size: 80px;
           color: red;
-
 	  
 	      
         }
         .glyphicon.glyphicon-remove{
           font-size: 80px;
           color: green;
-
 	  
           
         }
         .glyphicon.glyphicon-heart:hover {
-
          cursor: pointer;
-
 }
        .glyphicon.glyphicon-remove:hover {
-
          cursor: pointer;
-
 }
-
-
-
     </style>
   </div>
 </body>
