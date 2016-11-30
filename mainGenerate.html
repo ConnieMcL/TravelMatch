@@ -197,52 +197,6 @@
         }
     </script>
 
-
-<div class="contact">
-
-
-
-    <form class="signup-form" id="contact-form" role="form" onsubmit="return sendMessage(this)">
-
-
-    </form>
-</div>
-
-
-	<script>
-    // storeFav
-
-    var sendBtn = document.getElementById('generatedata');
-    var onFavStored = function(error) {
-      sendBtn.disabled = false;
-      if (error) {
-        
-      } else {
-       
-        // hide the form
-        contactFrom.style.display = 'none';
-      }
-    };
-    function storeFav(formObj) {
-        // Store emails to firebase
-        var myFirebaseRef = new Firebase("https://travelmatch-b0fd7.firebaseio.com");
-        myFirebaseRef.push({
-          place: formObj.place.value,
-	  image: formBoj.image.value,
-        }, onFavStoredComplete);
-        sendBtn.disabled = true;
-        return false;
-    }
-</script>
-
-
-
-
-
-
-
-
-
     <div class="card">
       <img alt="Card image" height="475px" id="image" src="..." width="400px">
 
@@ -279,7 +233,7 @@
         <br>
 
 
-        <p class="card-text"><a id="generatedata" name="generate" style="cursor: pointer;" onclick="reload(); storeFav();"><span class="glyphicon glyphicon-heart"></span></a>&nbsp; <a id="generatedata" name="generate" style="cursor: pointer;" onclick="reload()"><span class="glyphicon glyphicon-remove"></span></a></p>
+        <p class="card-text"><a id="generatedata" name="generate" onclick="reload()"><span style="position:absolute; left:340px; right:250 px; top:350px;" id="heart" class="glyphicon glyphicon-heart"></span></a>&nbsp; <a id="generatedata" name="generate" onclick="reload()"><span style="position:absolute; left:570px; right:60px; top:350px;" id="remove" class="glyphicon glyphicon-remove"></span></a></p>
         <br>
       </div>
     </div>
@@ -312,13 +266,32 @@
           position: absolute;
         }
         .glyphicon.glyphicon-heart {
-          font-size: 35px;
+          font-size: 80px;
           color: red;
+
+	  
+	      
         }
-        .glyphicon.glyphicon-remove {
-          font-size: 35px;
+        .glyphicon.glyphicon-remove{
+          font-size: 80px;
           color: green;
+
+	  
+          
         }
+        .glyphicon.glyphicon-heart:hover {
+
+         cursor: pointer;
+
+}
+       .glyphicon.glyphicon-remove:hover {
+
+         cursor: pointer;
+
+}
+
+
+
     </style>
   </div>
 </body>
