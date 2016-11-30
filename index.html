@@ -1,141 +1,169 @@
 <!DOCTYPE html>
 <html>
-<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		<script src="signout.js"></script>
-</head>
-
-<body>
-
-<div class="login-page">
-
-	
-<form style=
-"background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
-
-
-<img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style="margin-right: 10px; margin-bottom: 20px;" width="220px">
-                
-				<head>
-					
-				    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
-
-
-					<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
-    authDomain: "travelmatch-b0fd7.firebaseapp.com",
-    databaseURL: "https://travelmatch-b0fd7/users/.firebaseio.com/",
-    storageBucket: "travelmatch-b0fd7.appspot.com",
-    messagingSenderId: "152032242547"
-  };
-  firebase.initializeApp(config);
-</script>
-					<script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
-					<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
-					<script type="text/javascript">
-						// FirebaseUI config.
-						var uiConfig = {
-							'signInSuccessUrl': 'mainGenerate.html',
-							'signInOptions': [
-							// Leave the lines as is for the providers you want to offer your users.
-							firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-							
-						
-						firebase.auth.EmailAuthProvider.PROVIDER_ID
-							],
-							// Terms of service url.
-							'tosUrl': '<your-tos-url>',
-						};
-
-						// Initialize the FirebaseUI Widget using Firebase.
-						var ui = new firebaseui.auth.AuthUI(firebase.auth());
-						// The start method will wait until the DOM is loaded.
-						ui.start('#firebaseui-auth-container', uiConfig);
-					</script>
-					<!-- The surrounding HTML is left untouched by FirebaseUI.
-						 Your app may use that space for branding, controls and other customizations.-->
-					<div id="firebaseui-auth-container"></div>
-				</head>
-				
-</form> 
-		
-</div>
-</body>
-</html> 
-    
-
-     <style>
-    .form {
-    z-index: 1000;
-    background: #ffffff;
-    max-width: 360px;
-    height: 320px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-    opacity: 1;
-    }
-    .form input {
-    font-family: "Helvetica", sans-serif;
-    background: #f2f2f2;
-    outline: 0;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    opacity: 1;
-    }
-    .form button {
-    font-family: "Helvetica", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #00b3b3;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-    opacity: 1;
-    }
-    #signupbutton{
-    font-family: "Helvetica", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #00b3b3;
-    width: 100%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-    margin-top: 10px;
-    opacity: 1;
-        
-    }
-    #notice{
-        
-        
-    margin-top: 50px;
-    font-family: "Helvetica", sans-serif;
-    font-size: 15px;
-        
-        
-    }
-    .login-page {
-    width: 380px;
-    padding: 8% 0 0;
-    margin: auto;
-    z-index: -1;
-    height: 100px;
-    opacity: 0.9555;
-    }
-    </style>
+   <head>
+      <title>Travel Match</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      <script src="signout.js"></script>
+   </head>
+   <body style="background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <a class="navbar-brand" style="align:center;">    <img style="margin-right: 10px; margin-bottom: 20px;" src="https://i.imgsafe.org/8754a48d77.png"; width=220px height=31px> </img>
+               </a>
+            </div>
+         </div>
+      </nav>
+      <div class="login-page">
+         <!--      <img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style=
+            "margin-right: 10px; margin-bottom: 20px;" width="220px"> -->
+         <form>
+            <head>
+               <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+               <script>
+                  // Initialize Firebase
+                  var config = {
+                    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+                    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+                    databaseURL: "https://travelmatch-b0fd7/users/.firebaseio.com/",
+                    storageBucket: "travelmatch-b0fd7.appspot.com",
+                    messagingSenderId: "152032242547"
+                  };
+                  firebase.initializeApp(config);
+               </script>
+               <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+               <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
+               <script type="text/javascript">
+                  // FirebaseUI config.
+                  var uiConfig = {
+                  	'signInSuccessUrl': 'mainGenerate.html',
+                  	'signInOptions': [
+                  	// Leave the lines as is for the providers you want to offer your users.
+                  	firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                  	
+                  
+                  firebase.auth.EmailAuthProvider.PROVIDER_ID
+                  	],
+                  	// Terms of service url.
+                  	'tosUrl': '<your-tos-url>',
+                  };
+                  // Initialize the FirebaseUI Widget using Firebase.
+                  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+                  // The start method will wait until the DOM is loaded.
+                  ui.start('#firebaseui-auth-container', uiConfig);
+               </script>
+               <!-- The surrounding HTML is left untouched by FirebaseUI.
+                  Your app may use that space for branding, controls and other customizations.-->
+               <div id="firebaseui-auth-container">
+                  <br><br><br>
+               </div>
+            </head>
+         </form>
+      </div>
+   </body>
+</html>
+<style>
+   .form {
+   z-index: 1000;
+   background: #ffffff;
+   max-width: 360px;
+   height: 320px;
+   margin: 0 auto 100px;
+   padding: 45px;
+   text-align: center;
+   opacity: 1;
+   }
+   #signupbutton{
+   font-family: "Helvetica", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #00b3b3;
+   width: 100%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   cursor: pointer;
+   margin-top: 10px;
+   opacity: 1;
+   }
+   .navbar-brand {
+   transform: translateX(-50%);
+   left: 50%;
+   margin-bottom: 10px;
+   position: absolute;
+   }
+   #firebaseui-auth-container{
+   background-color: whitesmoke;
+   width: 400px;
+   height: 300px;
+   opacity: 0.99;
+   transform: translateX(-50%);
+   left: 49%;
+   position: absolute;
+   }
+   #notice{
+   margin-top: 50px;
+   font-family: "Helvetica", sans-serif;
+   font-size: 15px;
+   }
+   .login-page {
+   width: 380px;
+   padding: 8% 0 0;
+   margin: auto;
+   z-index: -1;
+   height: 100px;
+   opacity: 0.9555;
+   }   
+   .form input {
+   font-family: "Helvetica", sans-serif;
+   background: #f2f2f2;
+   outline: 0;
+   width: 100%;
+   border: 0;
+   margin: 0 0 15px;
+   padding: 15px;
+   box-sizing: border-box;
+   font-size: 14px;
+   opacity: 1;
+   }
+   .form button {
+   font-family: "Helvetica", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #00b3b3;
+   width: 100%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   cursor: pointer;
+   opacity: 1;
+   }
+   #signupbutton{
+   font-family: "Helvetica", sans-serif;
+   text-transform: uppercase;
+   outline: 0;
+   background: #00b3b3;
+   width: 100%;
+   border: 0;
+   padding: 15px;
+   color: #FFFFFF;
+   font-size: 14px;
+   cursor: pointer;
+   margin-top: 10px;
+   opacity: 1;
+   }
+   #notice{
+   margin-top: 50px;
+   font-family: "Helvetica", sans-serif;
+   font-size: 15px;
+   }
+</style>
 
