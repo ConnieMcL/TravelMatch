@@ -99,6 +99,24 @@
         var resPH=res.concat(PH);
         var resWB=res.concat(WB);
         var num=Math.floor(Math.random() * 92)+1;
+
+firebase.auth().onAuthStateChanged(firebaseUser +> {
+	if(firebaseUser){
+
+		consolelog(firebaseUser);
+		var email=firebaseUser.email;
+		
+		document.getElementById('userDetails').innerHTML='<h2>Welcome </h2></br>' + email;
+
+}else
+	{
+	alert("Not logged in");
+	console.log('not logged in');
+	window.location.href= 'index.html';
+}
+
+});
+
         function yourfunction() {
           generate();
           generate2();
