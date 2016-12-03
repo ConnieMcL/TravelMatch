@@ -1,313 +1,298 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-  <title>Travel Match</title>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-  </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-  </script>
-</head>
-
-<body style="background-color: lightgray;">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <div class="navbar-brand">
-          TravelMatch
-        </div>
+   <head>
+      <title>Travel Match</title>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1" name="viewport">
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   </head>
+   <body style="background-color: #f2f2f2;">
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <div class="navbar-brand">
+                  <div id="logo">TravelMatch</div>
+               </div>
+            </div>
+            <ul class="nav navbar-nav">
+               <li class="active">
+                  <a href="#">Discover</a>
+               </li>
+               <li>
+                  <a href="analytics.html">Analytics<span class="glyphicon glyphicon-chevron-right"></span></a>
+               </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                     <li>
+                        <a href="#">Change my password</a>
+                     </li>
+                     <li>
+                        <a href="#">Update my email address</a>
+                     </li>
+                     <li>
+                        <a href="#">Change my other info</a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="index.html"><span id="btnLogout" class="glyphicon glyphicon-log-out"></span>Log out</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <div id="body">
+         <!--Body-->
+         <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script> 
+         <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script> 
+         <script>
+            // Initialize Firebase
+            var config= {
+              apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU", authDomain: "travelmatch-b0fd7.firebaseapp.com", databaseURL: "https://travelmatch-b0fd7.firebaseio.com/", storageBucket: "travelmatch-b0fd7.appspot.com", messagingSenderId: "152032242547"
+            }
+            ;
+            firebase.initializeApp(config);
+            var database=firebase.database();
+            var num=Math.floor(Math.random() * 92)+1;
+            var string=num.toString(); //changes random number to string so it can be refrenced from the db
+            var slash="/";
+            var NA="/Name";
+            var IM="/Image";
+            var GI="/General Info";
+            var AD="/Address";
+            var CA="/Category";
+            var GP="/GPS";
+            var PH="/Telephone";
+            var WB="/Website";
+            var res=slash.concat(string); //adding the slash prefix to the attributes 
+            var resIM=res.concat(IM);
+            var resGI=res.concat(GI); //the general info attributes token
+            var resAD=res.concat(AD); //the Address attributes token
+            var resCA=res.concat(CA); //the Category attributes token
+            var resNA=res.concat(NA);
+            var resGP=res.concat(GP);
+            var resPH=res.concat(PH);
+            var resWB=res.concat(WB);
+            var num=Math.floor(Math.random() * 92)+1;
+            firebase.auth().onAuthStateChanged(firebaseUser => {
+            if(firebaseUser){
+            consolelog(firebaseUser);
+            var email=firebaseUser.email;
+            
+            document.getElementById('userDetails').innerHTML='<h2>Welcome </h2></br>' + email;
+            }else
+            {
+            alert("Not logged in");
+            console.log('not logged in');
+            window.location.href= 'index.html';
+            }
+            });
+            function yourfunction() {
+              generate();
+              generate2();
+              generate3();
+              generate4();
+              generate5();
+              generate6();
+              generate7();
+              generate8();
+            }
+            window.onload=yourfunction;
+            function reload() {
+              location.reload();
+            }
+            function generate() {
+              console.log(database);
+              database.ref(resGI).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var ginfo=snapshot.val();
+                  return general.appendChild(document.createTextNode(ginfo));
+              }
+              )
+            }
+            function generate2() {
+              console.log(database);
+              database.ref(resAD).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var ainfo=snapshot.val();
+                  return addr.appendChild(document.createTextNode(ainfo));
+              }
+              )
+            }
+            function generate3() {
+              console.log(database);
+              database.ref(resCA).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var cinfo=snapshot.val();
+                  return cat.appendChild(document.createTextNode(cinfo));
+              }
+              )
+            }
+            function generate4() {
+              console.log(database);
+              database.ref(resIM).once("value").then( function (snapshot) {
+                  console.log(snapshot.val());
+                  var iminfo=snapshot.val();
+                  document.querySelector('img').src=iminfo;
+              }
+              )
+            }
+            function generate5() {
+              console.log(database);
+              database.ref(resNA).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var nainfo=snapshot.val();
+                  return title.appendChild(document.createTextNode(nainfo));
+              }
+              )
+            }
+            function generate6() {
+              console.log(database);
+              database.ref(resGP).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var gpinfo=snapshot.val();
+                  document.querySelector(".gpsinfo").href=gpinfo;
+                  //return gps.appendChild(document.createTextNode(gpinfo));
+              }
+              )
+            }
+            function generate7() {
+              console.log(database);
+              database.ref(resPH).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var phinfo=snapshot.val();
+                  //document.write(ginfo);//printing the generalinfo
+                  return phone.appendChild(document.createTextNode(phinfo));
+              }
+              )
+            }
+            function generate8() {
+              console.log(database);
+              database.ref(resWB).once("value").then( //extracting the gi text
+              function (snapshot) {
+                  console.log(snapshot.val());
+                  var wbinfo=snapshot.val();
+                  document.querySelector(".web").href=wbinfo;
+                  //return web.appendChild(document.createTextNode(wbinfo));
+              }
+              )
+            btnLogout.addEventListener('click',e => {;
+            alert("Signing Out");
+            firebase.auth().signout();
+            window.location.href="index.html";
+            }
+            )
+            }
+         </script>
+         <div class="card">
+            <img alt="Card image" height="650px" id="image" src="..." width="500px">
+            <div class="card-block">
+               <h2 class="card-title" id="title">
+               </h2>
+               <h4 class="card-subtitle text-muted" id="addr">
+               </h4>
+               <h5 class="card-text" id="cat">
+               </h5>
+               <br>
+               <p class="card-text" id="general">
+               </p>
+               <p class="card-link" id="gps">
+               </p>
+               <p class="card-text" id="phone">Tel: </p>
+               <p class="card-text">
+                  <a class="card-link gpsinfo" target="_blank"><span class="glyphicon glyphicon-map-marker"></span> Location</a>
+                  |
+                  <a class="card-link web" target="_blank"><span class="glyphicon glyphicon-list-alt"></span> Website</a>
+               </p>
+               <br>
+               <p class="card-text"><a id="generatedata" name="generate" onclick="reload()"><span id="heart" class="glyphicon glyphicon-heart"></span></a>&nbsp; <a id="generatedata" name="generate" onclick="reload()"><span id="remove" class="glyphicon glyphicon-remove"></span></a></p>
+               <br>
+            </div>
+         </div>
+         <style>
+            #body {
+            margin-left: auto;
+            margin-right: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            width: 500px;
+            color: black;
+            }
+            .card {
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-color: #f7f7f7;
+            width: 500px;
+            height: 725px;
+            font-size: 15px;
+            position: relative;
+            }
+            .card-block {
+            float: center;
+            position: absolute;
+            left: 0px;
+            bottom:0px;
+            width: 500px;
+            z-index: 1000;
+            padding: 2px;
+            background: linear-gradient(to bottom,transparent, #f7f7f7 15%);
+            }
+            #cat {
+            color: #5bafa8;
+            text-transform: uppercase;
+            font-weight: bold;
+            }
+            #title{
+            color : white;
+            text-shadow: 1px 1px 1px black;
+            }
+            #addr{
+            color: black;
+            }
+            #image {
+            max-height: 500px;
+            overflow: hidden;
+            max-width: 500px;
+            }
+            .navbar-brand {
+            transform: translateX(-45%);
+            left: 50.5%;
+            font-size: 25px;
+            margin-bottom: 10px;
+            position: absolute;
+            font-family: Arial, Geneva, sans-serif;
+            }
+            #logo{
+            color: cadetblue;
+            font-weight: bold;
+            }
+            .glyphicon.glyphicon-heart {
+            font-size: 45px;
+            color: #e83010;      
+            }
+            .glyphicon.glyphicon-remove{
+            font-size: 45px;
+            color: #0a9b2a;
+            }
+            .glyphicon.glyphicon-heart:hover {
+            cursor: pointer;
+            }
+            .glyphicon.glyphicon-remove:hover {
+            cursor: pointer;
+            }
+            .glyphicon.glyphicon-map-marker:hover{
+            cursor: pointer;  
+            }
+         </style>
       </div>
-
-
-      <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="#">Discover</a>
-        </li>
-
-
-        <li>
-          <a href="analytics.html">Analytics<span class="glyphicon glyphicon-chevron-right"></span></a>
-        </li>
-      </ul>
-
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">Change my password</a>
-            </li>
-
-
-            <li>
-              <a href="#">Update my email address</a>
-            </li>
-
-
-            <li>
-              <a href="#">Change my other info</a>
-            </li>
-          </ul>
-        </li>
-
-
-        <li>
-          <a href="index.html"><span id="btnLogout" class="glyphicon glyphicon-log-out"></span>Log out</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
-  <div id="body">
-    <!--Body-->
-    <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js">
-    </script> 
-    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js">
-    </script> 
-    <script>
-        // Initialize Firebase
-        var config= {
-          apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU", authDomain: "travelmatch-b0fd7.firebaseapp.com", databaseURL: "https://travelmatch-b0fd7.firebaseio.com/", storageBucket: "travelmatch-b0fd7.appspot.com", messagingSenderId: "152032242547"
-        }
-        ;
-        firebase.initializeApp(config);
-        var database=firebase.database();
-        var num=Math.floor(Math.random() * 92)+1;
-        var string=num.toString(); //changes random number to string so it can be refrenced from the db
-        var slash="/";
-        var NA="/Name";
-        var IM="/Image";
-        var GI="/General Info";
-        var AD="/Address";
-        var CA="/Category";
-        var GP="/GPS";
-        var PH="/Telephone";
-        var WB="/Website";
-        var res=slash.concat(string); //adding the slash prefix to the attributes 
-        var resIM=res.concat(IM);
-        var resGI=res.concat(GI); //the general info attributes token
-        var resAD=res.concat(AD); //the Address attributes token
-        var resCA=res.concat(CA); //the Category attributes token
-        var resNA=res.concat(NA);
-        var resGP=res.concat(GP);
-        var resPH=res.concat(PH);
-        var resWB=res.concat(WB);
-        var num=Math.floor(Math.random() * 92)+1;
-
-firebase.auth().onAuthStateChanged(firebaseUser => {
-	if(firebaseUser){
-
-		consolelog(firebaseUser);
-		var email=firebaseUser.email;
-		
-		document.getElementById('userDetails').innerHTML='<h2>Welcome </h2></br>' + email;
-
-}else
-	{
-	alert("Not logged in");
-	console.log('not logged in');
-	window.location.href= 'index.html';
-}
-
-});
-
-        function yourfunction() {
-          generate();
-          generate2();
-          generate3();
-          generate4();
-          generate5();
-          generate6();
-          generate7();
-          generate8();
-        }
-        window.onload=yourfunction;
-        function reload() {
-          location.reload();
-        }
-        function generate() {
-          console.log(database);
-          database.ref(resGI).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var ginfo=snapshot.val();
-              return general.appendChild(document.createTextNode(ginfo));
-          }
-          )
-        }
-        function generate2() {
-          console.log(database);
-          database.ref(resAD).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var ainfo=snapshot.val();
-              return addr.appendChild(document.createTextNode(ainfo));
-          }
-          )
-        }
-        function generate3() {
-          console.log(database);
-          database.ref(resCA).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var cinfo=snapshot.val();
-              return cat.appendChild(document.createTextNode(cinfo));
-          }
-          )
-        }
-        function generate4() {
-          console.log(database);
-          database.ref(resIM).once("value").then( function (snapshot) {
-              console.log(snapshot.val());
-              var iminfo=snapshot.val();
-              document.querySelector('img').src=iminfo;
-          }
-          )
-        }
-        function generate5() {
-          console.log(database);
-          database.ref(resNA).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var nainfo=snapshot.val();
-              return title.appendChild(document.createTextNode(nainfo));
-          }
-          )
-        }
-        function generate6() {
-          console.log(database);
-          database.ref(resGP).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var gpinfo=snapshot.val();
-              document.querySelector(".gpsinfo").href=gpinfo;
-              //return gps.appendChild(document.createTextNode(gpinfo));
-          }
-          )
-        }
-        function generate7() {
-          console.log(database);
-          database.ref(resPH).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var phinfo=snapshot.val();
-              //document.write(ginfo);//printing the generalinfo
-              return phone.appendChild(document.createTextNode(phinfo));
-          }
-          )
-        }
-        function generate8() {
-          console.log(database);
-          database.ref(resWB).once("value").then( //extracting the gi text
-          function (snapshot) {
-              console.log(snapshot.val());
-              var wbinfo=snapshot.val();
-              document.querySelector(".web").href=wbinfo;
-              //return web.appendChild(document.createTextNode(wbinfo));
-          }
-          )
-	btnLogout.addEventListener('click',e => {;
-		alert("Signing Out");
-		firebase.auth().signout();
-		window.location.href="index.html";
-}
-)
-        }
-    </script>
-
-    <div class="card">
-      <img alt="Card image" height="475px" id="image" src="..." width="400px">
-
-      <div class="card-block">
-        <h4 class="card-title" id="title">
-        </h4>
-
-
-        <h5 class="card-subtitle text-muted" id="addr">
-        </h5>
-
-
-        <p class="card-text" id="cat">
-        </p>
-
-
-        <p class="card-text" id="general">
-        </p>
-
-
-        <p class="card-link" id="gps">
-        </p>
-
-
-        <p class="card-text" id="phone">Tel:</p>
-
-
-        <p class="card-text"><a class="card-link gpsinfo" target="_blank">Location</a>
-        </p>
-
-
-        <p class="card-text"><a class="card-link web" target="_blank">Website</a>
-        </p>
-        <br>
-
-
-        <p class="card-text"><a id="generatedata" name="generate" onclick="reload()"><span style="position:absolute; left:340px; right:250 px; top:350px;" id="heart" class="glyphicon glyphicon-heart"></span></a>&nbsp; <a id="generatedata" name="generate" onclick="reload()"><span style="position:absolute; left:570px; right:60px; top:350px;" id="remove" class="glyphicon glyphicon-remove"></span></a></p>
-        <br>
-      </div>
-    </div>
-    <style>
-        #body {
-          width: 400px;
-          margin-left: auto;
-          margin-right: auto;
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        .card {
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          text-align: center;
-          background-color: #ffffff;
-          max-width: 400px;
-          font-size: 15px;
-        }
-        #cat {
-          color: blueviolet;
-        }
-        #image {
-          max-height: 500px;
-          overflow: hidden;
-          max-width: 500px;
-        }
-        .navbar-brand {
-          transform: translateX(-50%);
-          left: 50%;
-          margin-bottom: 10px;
-          position: absolute;
-        }
-        .glyphicon.glyphicon-heart {
-          font-size: 80px;
-          color: red;
-	  
-	      
-        }
-        .glyphicon.glyphicon-remove{
-          font-size: 80px;
-          color: green;
-	  
-          
-        }
-        .glyphicon.glyphicon-heart:hover {
-         cursor: pointer;
-}
-       .glyphicon.glyphicon-remove:hover {
-         cursor: pointer;
-}
-    </style>
-  </div>
-</body>
+   </body>
 </html>
