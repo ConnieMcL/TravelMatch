@@ -11,35 +11,96 @@
       <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
       <script src="signout.js"></script>
    </head>
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+
+
    <body style="background-image: url(https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14359535_173835473056468_392768637_n.jpg?ig_cache_key=MTM0MTMzMDEzNjY2Njc2MDI0MA%3D%3D.2); background-size: cover; background-repeat: no-repeat; background-position: center;">
       <nav class="navbar navbar-default">
+
          <div class="container-fluid">
             <div class="navbar-header">
                <a class="navbar-brand" style="align:center;">    <img style="margin-right: 10px; margin-bottom: 20px;" src="https://i.imgsafe.org/8754a48d77.png"; width=220px height=31px> </img>
                </a>
             </div>
          </div>
+
       </nav>
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
       <div class="login-page">
          <!--      <img height="31px" src="https://c4.staticflickr.com/9/8615/29709677243_51b34f63dd_b.jpg" style=
             "margin-right: 10px; margin-bottom: 20px;" width="220px"> -->
-         <form>
+
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <form class="signup-form" id="contatc-form" role="form" onsumbit="return authDataCallback(this)">
+
             <head>
-               <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+               <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+
+
                <script>
-                  // Initialize Firebase
-                  var config = {
-                    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
-                    authDomain: "travelmatch-b0fd7.firebaseapp.com",
-                    databaseURL: "https://travelmatch-b0fd7/users/.firebaseio.com/",
-                    storageBucket: "travelmatch-b0fd7.appspot.com",
-                    messagingSenderId: "152032242547"
-                  };
-                  firebase.initializeApp(config);
-               </script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAaliQ9NkiaiXKdmZ3z0CmCPKMxCN6KiOU",
+    authDomain: "travelmatch-b0fd7.firebaseapp.com",
+    databaseURL: "https://travelmatch-b0fd7.firebaseio.com",
+    storageBucket: "travelmatch-b0fd7.appspot.com",
+    messagingSenderId: "152032242547"
+  };
+  firebase.initializeApp(config);
+
+var rootRef = firebase.database().ref();
+var usersRef = firebase.database().ref().child("users");
+var user = firebase.auth().currentUser;
+
+
+firebase.auth().onAuthStateChanged(function(user){
+var uuid= user.uid;
+if(user){
+//user is signed in
+
+usersRef.child(uuid).set({
+  
+  email: user.email
+ 
+});
+
+}else{
+//no user is signed in
+}
+});
+
+
+
+/*
+
+var newUsersRef = usersRef.child("users").child(authData.id).set({
+
+  provider: authData.provider,
+  name: userName
+  
+});
+var postId = newUsersRef.key;
+
+
+*/
+
+
+
+</script>
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+
                <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
                <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
                <script type="text/javascript">
+
                   // FirebaseUI config.
                   var uiConfig = {
                   	'signInSuccessUrl': 'mainGenerate.html',
@@ -58,11 +119,17 @@
                   // The start method will wait until the DOM is loaded.
                   ui.start('#firebaseui-auth-container', uiConfig);
                </script>
+
                <!-- The surrounding HTML is left untouched by FirebaseUI.
                   Your app may use that space for branding, controls and other customizations.-->
                <div id="firebaseui-auth-container">
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
                   <br><br><br>
                </div>
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
             </head>
          </form>
       </div>
@@ -166,4 +233,3 @@
    font-size: 15px;
    }
 </style>
-
